@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Invitación</title>
+<style>
+:root{--ink:#403a38;--cream:#fbf7f2;--rose:#d8b0ad;--sage:#a7b39d;--card:rgba(255,255,255,.82)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(145deg,#fbf7f2,#f6efea);color:var(--ink)}
+main{max-width:760px;margin:auto;padding:24px}.hero{min-height:92vh;display:grid;place-items:center;text-align:center;padding:42px 18px}
+.kicker{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:#7a746f}.names{font-family:Georgia,serif;font-weight:400;font-size:clamp(44px,9vw,84px);line-height:.95;margin:18px 0}.date{font-size:18px;letter-spacing:.08em}
+.card{background:var(--card);border:1px solid rgba(64,58,56,.12);border-radius:26px;padding:28px;margin:18px 0;box-shadow:0 18px 60px rgba(80,60,55,.08)}
+h2{font-family:Georgia,serif;font-size:32px;font-weight:400;margin:0 0 14px}.guest{font-size:18px}.pill{display:inline-block;background:#eee6df;border-radius:999px;padding:8px 13px;margin-top:8px}
+a.btn,button{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:13px 18px;background:#403a38;color:white;text-decoration:none;font-weight:700;cursor:pointer}
+a.secondary{background:#eae2dc;color:#403a38}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.muted{color:#77706a}.verse{font-family:Georgia,serif;font-size:26px;line-height:1.35}
+label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}input,select,textarea{width:100%;padding:13px 14px;border:1px solid #ddd3cc;border-radius:14px;background:white;font:inherit}
+textarea{min-height:90px;resize:vertical}.hidden{display:none!important}.success{padding:18px;border-radius:16px;background:#edf3ea}
+footer{text-align:center;padding:45px 10px 70px;color:#8a817b;font-size:13px}
+@media(max-width:620px){.grid{grid-template-columns:1fr}.card{padding:22px}.hero{min-height:82vh}}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+  <div>
+    <div class="kicker" id="eventType">Invitación</div>
+    <h1 class="names" id="names">Cargando…</h1>
+    <div class="date" id="eventDate"></div>
+    <p class="guest" id="guestWelcome"></p>
+    <div class="pill" id="quota"></div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Ceremonia</h2>
+  <strong id="ceremonyName">—</strong>
+  <p id="ceremonyAddress" class="muted"></p>
+  <p id="ceremonyTime"></p>
+  <div class="actions"><a class="btn secondary" id="ceremonyMap" target="_blank" rel="noopener">Ver ubicación</a></div>
+</section>
+
+<section class="card" id="receptionCard">
+  <h2>Recepción</h2>
+  <strong id="receptionName">—</strong>
+  <p id="receptionAddress" class="muted"></p>
+  <p id="receptionTime"></p>
+  <div class="actions"><a class="btn secondary" id="receptionMap" target="_blank" rel="noopener">Ver ubicación</a></div>
+</section>
+
+<section class="card" id="verseCard"><div class="verse" id="verse"></div></section>
+
+<div class="grid">
+  <section class="card"><h2>Vestimenta</h2><p id="dress"></p></section>
+  <section class="card"><h2>Regalos</h2><p id="giftMessage"></p><p class="muted" id="giftData"></p></section>
+</div>
+
+<section class="card">
+  <h2>Confirmación de asistencia</h2>
+  <p class="muted" id="deadline"></p>
+  <form id="rsvpForm">
+    <label>¿Asistirás?</label>
+    <select id="attendance" required>
+      <option value="">Selecciona una opción</option>
+      <option value="SI">Sí, asistiré</option>
+      <option value="NO">No podré asistir</option>
+    </select>
+    <div id="attendingFields">
+      <label>¿Cuántas personas asistirán?</label>
+      <input id="attendingCount" type="number" min="1">
+      <label id="companionsLabel">Nombres de acompañantes</label>
+      <textarea id="companions" placeholder="Opcional"></textarea>
+    </div>
+    <label>Nota o mensaje</label>
+    <textarea id="note" placeholder="Opcional"></textarea>
+    <div class="actions"><button type="submit" id="submitBtn">Confirmar asistencia</button></div>
+  </form>
+  <div id="rsvpSuccess" class="success hidden">¡Gracias! Tu respuesta fue registrada.</div>
+</section>
+
+<section class="card"><p id="finalMessage"></p></section>
+<footer>Invitación creada por CELEA Studio</footer>
+</main>
+<script>
+const API_URL="https://script.google.com/macros/s/AKfycbzu42ewgHPaFYryJMtRK_L2_iphOU6r0Mml7A3UCe7_elkqy7oWnmv6B5caJDuD9lA6/exec";
+const PROJECT_ID="CEL-0002";
+const qs=new URLSearchParams(location.search);
+const GUEST_CODE=qs.get("g")||"";
+let guest=null,eventData=null;
+
+function jsonp(params){
+  return new Promise((resolve,reject)=>{
+    const cb="celea_"+Date.now()+"_"+Math.random().toString(36).slice(2);
+    const s=document.createElement("script");
+    const timer=setTimeout(()=>{cleanup();reject(new Error("Tiempo de espera agotado"));},15000);
+    function cleanup(){clearTimeout(timer);delete window[cb];s.remove()}
+    window[cb]=d=>{cleanup();resolve(d)};
+    params.callback=cb;
+    s.src=API_URL+"?"+new URLSearchParams(params);
+    s.onerror=()=>{cleanup();reject(new Error("No se pudo conectar"))};
+    document.body.appendChild(s);
+  });
+}
+function txt(id,v){document.getElementById(id).textContent=(v||"").toString()}
+function datePretty(v){
+  if(!v)return "";
+  const d=new Date(v+"T12:00:00");
+  if(isNaN(d))return v;
+  return new Intl.DateTimeFormat("es-EC",{day:"numeric",month:"long",year:"numeric"}).format(d);
+}
+async function load(){
+  try{
+    const d=await jsonp({accion:"evento_invitado",id:PROJECT_ID,g:GUEST_CODE});
+    if(!d.ok)throw new Error(d.mensaje||"Invitación no disponible");
+    guest=d.invitado; eventData=d.evento;
+    document.title=eventData.nombres||"Invitación";
+    txt("eventType",eventData.tipoEvento||"Invitación");
+    txt("names",eventData.nombres);
+    txt("eventDate",datePretty(eventData.fechaEvento));
+    txt("guestWelcome",guest.invitado?"Queremos compartir este día contigo, "+guest.invitado+".":"");
+    txt("quota",(guest.cupos||1)+" "+((Number(guest.cupos)||1)===1?"cupo":"cupos"));
+
+    txt("ceremonyName",eventData.nombreCeremonia);
+    txt("ceremonyAddress",eventData.direccionCeremonia);
+    txt("ceremonyTime",eventData.horaCeremonia?("Hora: "+eventData.horaCeremonia):"");
+    setMap("ceremonyMap",eventData.mapsCeremonia);
+
+    txt("receptionName",eventData.nombreRecepcion);
+    txt("receptionAddress",eventData.direccionRecepcion);
+    txt("receptionTime",eventData.horaRecepcion?("Hora: "+eventData.horaRecepcion):"");
+    setMap("receptionMap",eventData.mapsRecepcion);
+
+    txt("verse",eventData.fraseVersiculo);
+    if(!eventData.fraseVersiculo)document.getElementById("verseCard").classList.add("hidden");
+    txt("dress",eventData.codigoVestimenta||"Sin indicaciones especiales.");
+    txt("giftMessage",eventData.mensajeRegalos||"Tu presencia es nuestro mejor regalo.");
+    txt("giftData",eventData.datosRegalos||"");
+    txt("deadline",eventData.fechaLimiteRsvp?("Confirma hasta el "+datePretty(eventData.fechaLimiteRsvp)+"."):"");
+    txt("finalMessage",eventData.mensajeFinal||"Gracias por acompañarnos en este día.");
+
+    const max=Math.max(1,Number(guest.cupos)||1);
+    const count=document.getElementById("attendingCount");
+    count.max=max;count.value=Math.min(max,Math.max(1,Number(guest.asisten)||max));
+    document.getElementById("companions").value=guest.acompanantes||"";
+    document.getElementById("note").value=guest.notaRegalo||"";
+    if(guest.estado==="CONFIRMADO"){document.getElementById("attendance").value="SI"}
+    if(guest.estado==="NO ASISTE"){document.getElementById("attendance").value="NO"}
+    toggleAttendance();
+  }catch(err){
+    document.querySelector("main").innerHTML='<section class="hero"><div><h1 class="names">Invitación no disponible</h1><p>'+err.message+'</p></div></section>';
+  }
+}
+function setMap(id,url){const a=document.getElementById(id);if(url){a.href=url}else{a.classList.add("hidden")}}
+function toggleAttendance(){
+  const yes=document.getElementById("attendance").value!=="NO";
+  document.getElementById("attendingFields").classList.toggle("hidden",!yes);
+}
+document.getElementById("attendance").addEventListener("change",toggleAttendance);
+document.getElementById("rsvpForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const btn=document.getElementById("submitBtn");
+  const attendance=document.getElementById("attendance").value;
+  if(!attendance)return;
+  btn.disabled=true;btn.textContent="Guardando…";
+  const payload={
+    accion:"rsvp",idProyecto:PROJECT_ID,codigo:GUEST_CODE,
+    estado:attendance==="SI"?"CONFIRMADO":"NO ASISTE",
+    asisten:attendance==="SI"?Number(document.getElementById("attendingCount").value||1):0,
+    acompanantes:attendance==="SI"?document.getElementById("companions").value.trim():"",
+    notaRegalo:document.getElementById("note").value.trim()
+  };
+  try{
+    await fetch(API_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+    document.getElementById("rsvpForm").classList.add("hidden");
+    document.getElementById("rsvpSuccess").classList.remove("hidden");
+  }catch(err){
+    btn.disabled=false;btn.textContent="Confirmar asistencia";
+    alert("No se pudo registrar la respuesta. Inténtalo nuevamente.");
+  }
+});
+load();
+</script>
+</body>
+</html>

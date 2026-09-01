@@ -1,185 +1,48 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>Invitación</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Invitación</title>
 <style>
-:root{--ink:#403a38;--cream:#fbf7f2;--rose:#d8b0ad;--sage:#a7b39d;--card:rgba(255,255,255,.82)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(145deg,#fbf7f2,#f6efea);color:var(--ink)}
-main{max-width:760px;margin:auto;padding:24px}.hero{min-height:92vh;display:grid;place-items:center;text-align:center;padding:42px 18px}
-.kicker{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:#7a746f}.names{font-family:Georgia,serif;font-weight:400;font-size:clamp(44px,9vw,84px);line-height:.95;margin:18px 0}.date{font-size:18px;letter-spacing:.08em}
-.card{background:var(--card);border:1px solid rgba(64,58,56,.12);border-radius:26px;padding:28px;margin:18px 0;box-shadow:0 18px 60px rgba(80,60,55,.08)}
-h2{font-family:Georgia,serif;font-size:32px;font-weight:400;margin:0 0 14px}.guest{font-size:18px}.pill{display:inline-block;background:#eee6df;border-radius:999px;padding:8px 13px;margin-top:8px}
-a.btn,button{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:13px 18px;background:#403a38;color:white;text-decoration:none;font-weight:700;cursor:pointer}
-a.secondary{background:#eae2dc;color:#403a38}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.muted{color:#77706a}.verse{font-family:Georgia,serif;font-size:26px;line-height:1.35}
-label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}input,select,textarea{width:100%;padding:13px 14px;border:1px solid #ddd3cc;border-radius:14px;background:white;font:inherit}
-textarea{min-height:90px;resize:vertical}.hidden{display:none!important}.success{padding:18px;border-radius:16px;background:#edf3ea}
-footer{text-align:center;padding:45px 10px 70px;color:#8a817b;font-size:13px}
-@media(max-width:620px){.grid{grid-template-columns:1fr}.card{padding:22px}.hero{min-height:82vh}}
-</style>
-</head>
+:root{--ink:#37322f;--muted:#7d756f;--paper:#f8f3ed;--paper2:#eee7df;--sage:#8d9b84;--line:rgba(55,50,47,.14)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:56px 22px;position:relative;overflow:hidden;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.85),transparent 35%),linear-gradient(160deg,#faf7f2,#eee7df)}
+.hero:before,.hero:after{content:"";position:absolute;border:1px solid rgba(141,155,132,.32);border-radius:50%;width:440px;height:440px}
+.hero:before{left:-250px;top:-170px}.hero:after{right:-280px;bottom:-220px}
+.monogram{width:72px;height:72px;border:1px solid rgba(55,50,47,.22);border-radius:50%;display:grid;place-items:center;margin:0 auto 30px;font-family:Georgia,serif;font-size:28px}
+.eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--sage);font-weight:800}.names{font-family:Georgia,serif;font-weight:400;font-size:clamp(52px,10vw,104px);line-height:.92;margin:20px auto;max-width:1000px}.date{font-size:16px;letter-spacing:.13em;text-transform:uppercase}
+.personal{margin:42px auto 0;max-width:520px;font-family:Georgia,serif;font-size:21px;line-height:1.5}.quota{display:inline-flex;margin-top:14px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.58);border:1px solid var(--line);font-size:12px}
+.scroll{position:absolute;bottom:28px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+main{max-width:920px;margin:auto;padding:70px 22px}.intro{text-align:center;max-width:680px;margin:0 auto 70px}.intro p{font-family:Georgia,serif;font-size:clamp(25px,4vw,38px);line-height:1.35;margin:0}
+.section{padding:38px 0;border-top:1px solid var(--line)}.section-title{font-family:Georgia,serif;font-size:38px;font-weight:400;margin:6px 0 22px}.kicker{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sage);font-weight:800}
+.event-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.event-card{background:rgba(255,255,255,.54);border:1px solid var(--line);border-radius:28px;padding:28px}.event-card h3{font-family:Georgia,serif;font-size:28px;font-weight:400;margin:5px 0 14px}.muted{color:var(--muted);line-height:1.65}.btn{display:inline-flex;margin-top:12px;padding:12px 17px;border-radius:999px;background:var(--ink);color:white;text-decoration:none;font-size:12px;font-weight:800;border:0;cursor:pointer}.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.detail{padding:25px;border-radius:24px;background:#f2ebe4}.detail h3{font-family:Georgia,serif;font-weight:400;font-size:27px;margin:5px 0 12px}
+.rsvp{background:#fff;border:1px solid var(--line);border-radius:32px;padding:34px}.rsvp h2{font-family:Georgia,serif;font-size:42px;font-weight:400;margin:5px 0 8px}label{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin:17px 0 7px}input,select,textarea{width:100%;border:1px solid #dcd4cc;background:#fbfaf8;border-radius:14px;padding:13px 14px;font:inherit;color:var(--ink)}textarea{min-height:92px;resize:vertical}.hidden{display:none!important}.success{padding:18px;border-radius:16px;background:#eaf0e7;color:#50604c;margin-top:14px}.final{text-align:center;padding:90px 0 45px}.final p{font-family:Georgia,serif;font-size:30px;line-height:1.45}.credit{text-align:center;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);padding-bottom:40px}
+@media(max-width:680px){.event-grid,.detail-grid{grid-template-columns:1fr}.names{font-size:54px}.hero{min-height:92svh}.rsvp{padding:24px}.section-title{font-size:32px}}
+</style></head>
 <body>
+<section class="hero"><div><div class="monogram" id="monogram">C</div><div class="eyebrow" id="eventType">Invitación</div><h1 class="names" id="names">Cargando…</h1><div class="date" id="eventDate"></div><div class="personal" id="guestWelcome"></div><div class="quota" id="quota"></div></div><div class="scroll">Desliza para descubrir</div></section>
 <main>
-<section class="hero">
-  <div>
-    <div class="kicker" id="eventType">Invitación</div>
-    <h1 class="names" id="names">Cargando…</h1>
-    <div class="date" id="eventDate"></div>
-    <p class="guest" id="guestWelcome"></p>
-    <div class="pill" id="quota"></div>
-  </div>
-</section>
-
-<section class="card">
-  <h2>Ceremonia</h2>
-  <strong id="ceremonyName">—</strong>
-  <p id="ceremonyAddress" class="muted"></p>
-  <p id="ceremonyTime"></p>
-  <div class="actions"><a class="btn secondary" id="ceremonyMap" target="_blank" rel="noopener">Ver ubicación</a></div>
-</section>
-
-<section class="card" id="receptionCard">
-  <h2>Recepción</h2>
-  <strong id="receptionName">—</strong>
-  <p id="receptionAddress" class="muted"></p>
-  <p id="receptionTime"></p>
-  <div class="actions"><a class="btn secondary" id="receptionMap" target="_blank" rel="noopener">Ver ubicación</a></div>
-</section>
-
-<section class="card" id="verseCard"><div class="verse" id="verse"></div></section>
-
-<div class="grid">
-  <section class="card"><h2>Vestimenta</h2><p id="dress"></p></section>
-  <section class="card"><h2>Regalos</h2><p id="giftMessage"></p><p class="muted" id="giftData"></p></section>
-</div>
-
-<section class="card">
-  <h2>Confirmación de asistencia</h2>
-  <p class="muted" id="deadline"></p>
-  <form id="rsvpForm">
-    <label>¿Asistirás?</label>
-    <select id="attendance" required>
-      <option value="">Selecciona una opción</option>
-      <option value="SI">Sí, asistiré</option>
-      <option value="NO">No podré asistir</option>
-    </select>
-    <div id="attendingFields">
-      <label>¿Cuántas personas asistirán?</label>
-      <input id="attendingCount" type="number" min="1">
-      <label id="companionsLabel">Nombres de acompañantes</label>
-      <textarea id="companions" placeholder="Opcional"></textarea>
-    </div>
-    <label>Nota o mensaje</label>
-    <textarea id="note" placeholder="Opcional"></textarea>
-    <div class="actions"><button type="submit" id="submitBtn">Confirmar asistencia</button></div>
-  </form>
-  <div id="rsvpSuccess" class="success hidden">¡Gracias! Tu respuesta fue registrada.</div>
-</section>
-
-<section class="card"><p id="finalMessage"></p></section>
-<footer>Invitación creada por CELEA Studio</footer>
-</main>
+<section class="intro"><div class="kicker">Nuestra celebración</div><p id="verse">Hay momentos que merecen convertirse en recuerdos para siempre.</p></section>
+<section class="section"><div class="kicker">Dónde & cuándo</div><h2 class="section-title">Acompáñanos</h2><div class="event-grid">
+<article class="event-card"><div class="kicker">Ceremonia</div><h3 id="ceremonyName">—</h3><p class="muted" id="ceremonyAddress"></p><p id="ceremonyTime"></p><a class="btn alt" id="ceremonyMap" target="_blank" rel="noopener">Ver ubicación</a></article>
+<article class="event-card"><div class="kicker">Recepción</div><h3 id="receptionName">—</h3><p class="muted" id="receptionAddress"></p><p id="receptionTime"></p><a class="btn alt" id="receptionMap" target="_blank" rel="noopener">Ver ubicación</a></article>
+</div></section>
+<section class="section"><div class="detail-grid"><article class="detail"><div class="kicker">Dress code</div><h3>Vestimenta</h3><p class="muted" id="dress"></p></article><article class="detail"><div class="kicker">Un detalle</div><h3>Regalos</h3><p class="muted" id="giftMessage"></p><p id="giftData"></p></article></div></section>
+<section class="section"><div class="rsvp"><div class="kicker">RSVP</div><h2>¿Nos acompañas?</h2><p class="muted" id="deadline"></p><form id="rsvpForm">
+<label>¿Asistirás?</label><select id="attendance" required><option value="">Selecciona una opción</option><option value="SI">Sí, asistiré</option><option value="NO">No podré asistir</option></select>
+<div id="attendingFields"><label>¿Cuántas personas asistirán?</label><input id="attendingCount" type="number" min="1"><label>Nombres de acompañantes</label><textarea id="companions" placeholder="Opcional"></textarea></div>
+<label>Nota o mensaje</label><textarea id="note" placeholder="Opcional"></textarea><button class="btn" type="submit" id="submitBtn">Confirmar asistencia</button></form><div id="rsvpSuccess" class="success hidden">¡Gracias! Tu respuesta fue registrada.</div></div></section>
+<section class="final"><p id="finalMessage"></p></section>
+</main><div class="credit">Invitación creada por CELEA Studio</div>
 <script>
-const API_URL="https://script.google.com/macros/s/AKfycbzu42ewgHPaFYryJMtRK_L2_iphOU6r0Mml7A3UCe7_elkqy7oWnmv6B5caJDuD9lA6/exec";
-const PROJECT_ID="CEL-0002";
-const qs=new URLSearchParams(location.search);
-const GUEST_CODE=qs.get("g")||"";
-let guest=null,eventData=null;
-
-function jsonp(params){
-  return new Promise((resolve,reject)=>{
-    const cb="celea_"+Date.now()+"_"+Math.random().toString(36).slice(2);
-    const s=document.createElement("script");
-    const timer=setTimeout(()=>{cleanup();reject(new Error("Tiempo de espera agotado"));},15000);
-    function cleanup(){clearTimeout(timer);delete window[cb];s.remove()}
-    window[cb]=d=>{cleanup();resolve(d)};
-    params.callback=cb;
-    s.src=API_URL+"?"+new URLSearchParams(params);
-    s.onerror=()=>{cleanup();reject(new Error("No se pudo conectar"))};
-    document.body.appendChild(s);
-  });
-}
-function txt(id,v){document.getElementById(id).textContent=(v||"").toString()}
-function datePretty(v){
-  if(!v)return "";
-  const d=new Date(v+"T12:00:00");
-  if(isNaN(d))return v;
-  return new Intl.DateTimeFormat("es-EC",{day:"numeric",month:"long",year:"numeric"}).format(d);
-}
-async function load(){
-  try{
-    const d=await jsonp({accion:"evento_invitado",id:PROJECT_ID,g:GUEST_CODE});
-    if(!d.ok)throw new Error(d.mensaje||"Invitación no disponible");
-    guest=d.invitado; eventData=d.evento;
-    document.title=eventData.nombres||"Invitación";
-    txt("eventType",eventData.tipoEvento||"Invitación");
-    txt("names",eventData.nombres);
-    txt("eventDate",datePretty(eventData.fechaEvento));
-    txt("guestWelcome",guest.invitado?"Queremos compartir este día contigo, "+guest.invitado+".":"");
-    txt("quota",(guest.cupos||1)+" "+((Number(guest.cupos)||1)===1?"cupo":"cupos"));
-
-    txt("ceremonyName",eventData.nombreCeremonia);
-    txt("ceremonyAddress",eventData.direccionCeremonia);
-    txt("ceremonyTime",eventData.horaCeremonia?("Hora: "+eventData.horaCeremonia):"");
-    setMap("ceremonyMap",eventData.mapsCeremonia);
-
-    txt("receptionName",eventData.nombreRecepcion);
-    txt("receptionAddress",eventData.direccionRecepcion);
-    txt("receptionTime",eventData.horaRecepcion?("Hora: "+eventData.horaRecepcion):"");
-    setMap("receptionMap",eventData.mapsRecepcion);
-
-    txt("verse",eventData.fraseVersiculo);
-    if(!eventData.fraseVersiculo)document.getElementById("verseCard").classList.add("hidden");
-    txt("dress",eventData.codigoVestimenta||"Sin indicaciones especiales.");
-    txt("giftMessage",eventData.mensajeRegalos||"Tu presencia es nuestro mejor regalo.");
-    txt("giftData",eventData.datosRegalos||"");
-    txt("deadline",eventData.fechaLimiteRsvp?("Confirma hasta el "+datePretty(eventData.fechaLimiteRsvp)+"."):"");
-    txt("finalMessage",eventData.mensajeFinal||"Gracias por acompañarnos en este día.");
-
-    const max=Math.max(1,Number(guest.cupos)||1);
-    const count=document.getElementById("attendingCount");
-    count.max=max;count.value=Math.min(max,Math.max(1,Number(guest.asisten)||max));
-    document.getElementById("companions").value=guest.acompanantes||"";
-    document.getElementById("note").value=guest.notaRegalo||"";
-    if(guest.estado==="CONFIRMADO"){document.getElementById("attendance").value="SI"}
-    if(guest.estado==="NO ASISTE"){document.getElementById("attendance").value="NO"}
-    toggleAttendance();
-  }catch(err){
-    document.querySelector("main").innerHTML='<section class="hero"><div><h1 class="names">Invitación no disponible</h1><p>'+err.message+'</p></div></section>';
-  }
-}
-function setMap(id,url){const a=document.getElementById(id);if(url){a.href=url}else{a.classList.add("hidden")}}
-function toggleAttendance(){
-  const yes=document.getElementById("attendance").value!=="NO";
-  document.getElementById("attendingFields").classList.toggle("hidden",!yes);
-}
-document.getElementById("attendance").addEventListener("change",toggleAttendance);
-document.getElementById("rsvpForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  const btn=document.getElementById("submitBtn");
-  const attendance=document.getElementById("attendance").value;
-  if(!attendance)return;
-  btn.disabled=true;btn.textContent="Guardando…";
-  const payload={
-    accion:"rsvp",idProyecto:PROJECT_ID,codigo:GUEST_CODE,
-    estado:attendance==="SI"?"CONFIRMADO":"NO ASISTE",
-    asisten:attendance==="SI"?Number(document.getElementById("attendingCount").value||1):0,
-    acompanantes:attendance==="SI"?document.getElementById("companions").value.trim():"",
-    notaRegalo:document.getElementById("note").value.trim()
-  };
-  try{
-    await fetch(API_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
-    document.getElementById("rsvpForm").classList.add("hidden");
-    document.getElementById("rsvpSuccess").classList.remove("hidden");
-  }catch(err){
-    btn.disabled=false;btn.textContent="Confirmar asistencia";
-    alert("No se pudo registrar la respuesta. Inténtalo nuevamente.");
-  }
-});
-load();
-</script>
-</body>
-</html>
+const API_URL="https://script.google.com/macros/s/AKfycbzu42ewgHPaFYryJMtRK_L2_iphOU6r0Mml7A3UCe7_elkqy7oWnmv6B5caJDuD9lA6/exec",PROJECT_ID="CEL-0002",GUEST_CODE=new URLSearchParams(location.search).get("g")||"";
+function jsonp(params){return new Promise((resolve,reject)=>{const cb="celea_"+Date.now()+"_"+Math.random().toString(36).slice(2),s=document.createElement("script"),timer=setTimeout(()=>{clean();reject(new Error("Tiempo de espera agotado"))},15000);function clean(){clearTimeout(timer);delete window[cb];s.remove()}window[cb]=d=>{clean();resolve(d)};params.callback=cb;s.src=API_URL+"?"+new URLSearchParams(params);s.onerror=()=>{clean();reject(new Error("No se pudo conectar"))};document.body.appendChild(s)})}
+const $=id=>document.getElementById(id);const txt=(id,v)=>$(id).textContent=(v||"").toString();
+function pretty(v){if(!v)return"";const d=new Date(v+"T12:00:00");return isNaN(d)?v:new Intl.DateTimeFormat("es-EC",{day:"numeric",month:"long",year:"numeric"}).format(d)}
+function map(id,url){if(url)$(id).href=url;else $(id).classList.add("hidden")}
+function monogram(n){const parts=String(n||"").split(/\s*(?:&| y )\s*/i).filter(Boolean);return parts.slice(0,2).map(x=>x.trim()[0]||"").join("").toUpperCase()||"C"}
+function toggle(){$("attendingFields").classList.toggle("hidden",$("attendance").value==="NO")}
+async function load(){try{const d=await jsonp({accion:"evento_invitado",id:PROJECT_ID,g:GUEST_CODE});if(!d.ok)throw new Error(d.mensaje||"Invitación no disponible");const g=d.invitado,e=d.evento;document.title=e.nombres||"Invitación";txt("monogram",monogram(e.nombres));txt("eventType",e.tipoEvento||"Invitación");txt("names",e.nombres);txt("eventDate",pretty(e.fechaEvento));txt("guestWelcome",g.invitado?"Esta invitación ha sido preparada especialmente para "+g.invitado+".":"");txt("quota",(g.cupos||1)+" "+(Number(g.cupos)===1?"cupo reservado":"cupos reservados"));txt("ceremonyName",e.nombreCeremonia);txt("ceremonyAddress",e.direccionCeremonia);txt("ceremonyTime",e.horaCeremonia?"Hora · "+e.horaCeremonia:"");map("ceremonyMap",e.mapsCeremonia);txt("receptionName",e.nombreRecepcion);txt("receptionAddress",e.direccionRecepcion);txt("receptionTime",e.horaRecepcion?"Hora · "+e.horaRecepcion:"");map("receptionMap",e.mapsRecepcion);if(e.fraseVersiculo)txt("verse",e.fraseVersiculo);txt("dress",e.codigoVestimenta||"Sin indicaciones especiales.");txt("giftMessage",e.mensajeRegalos||"Tu presencia es nuestro mejor regalo.");txt("giftData",e.datosRegalos||"");txt("deadline",e.fechaLimiteRsvp?"Confirma tu asistencia hasta el "+pretty(e.fechaLimiteRsvp)+".":"");txt("finalMessage",e.mensajeFinal||"Gracias por acompañarnos en este día.");const max=Math.max(1,Number(g.cupos)||1);$("attendingCount").max=max;$("attendingCount").value=Math.min(max,Math.max(1,Number(g.asisten)||max));$("companions").value=g.acompanantes||"";$("note").value=g.notaRegalo||"";if(g.estado==="CONFIRMADO")$("attendance").value="SI";if(g.estado==="NO ASISTE")$("attendance").value="NO";toggle()}catch(err){document.body.innerHTML='<section class="hero"><div><h1 class="names">Invitación no disponible</h1><p>'+err.message+'</p></div></section>'}}
+$("attendance").addEventListener("change",toggle);$("rsvpForm").addEventListener("submit",async ev=>{ev.preventDefault();const a=$("attendance").value;if(!a)return;const b=$("submitBtn");b.disabled=true;b.textContent="Guardando…";const payload={accion:"rsvp",idProyecto:PROJECT_ID,codigo:GUEST_CODE,estado:a==="SI"?"CONFIRMADO":"NO ASISTE",asisten:a==="SI"?Number($("attendingCount").value||1):0,acompanantes:a==="SI"?$("companions").value.trim():"",notaRegalo:$("note").value.trim()};try{await fetch(API_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});$("rsvpForm").classList.add("hidden");$("rsvpSuccess").classList.remove("hidden")}catch(e){b.disabled=false;b.textContent="Confirmar asistencia";alert("No se pudo registrar la respuesta.")}});load();
+</script></body></html>
